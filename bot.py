@@ -377,7 +377,7 @@ input, select { width: 100%; border: none; outline: none; background: var(--card
     </div>
     <div class="tabs">
         <button class="tab active" id="tab-active" onclick="setFilter('active')">Купить</button>
-        <button class="tab" id="tab-all" onclick="setFilter('all')">Р'СЃРμ</button>
+        <button class="tab" id="tab-all" onclick="setFilter('all')">Все</button>
         <button class="tab" id="tab-done" onclick="setFilter('done')">Куплено</button>
     </div>
 </div>
