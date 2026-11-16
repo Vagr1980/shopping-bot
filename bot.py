@@ -76,9 +76,9 @@ def build_kb(fid, uid):
     if WEBAPP_URL: kb.append([InlineKeyboardButton(text="📱 Открыть приложение", web_app=WebAppInfo(url=WEBAPP_URL))])
     deleting = uid in DELETE_MODE
     for r in rows[:40]:
-        title = r["text"][:33] + "…" if len(r["text"]) > 34 else r["text"]
+        title = r["text"][:33] + "..." if len(r["text"]) > 34 else r["text"]
         if deleting: kb.append([InlineKeyboardButton(text=f"вќЊ {title}", callback_data=f"d:{r['id']}")])
-        else: kb.append([InlineKeyboardButton(text=f"{'вњ…' if r['done'] else 'в–«пёЏ'} {title}", callback_data=f"t:{r['id']}")])
+        else: kb.append([InlineKeyboardButton(text=f"{'вњ...' if r['done'] else 'в–«пёЏ'} {title}", callback_data=f"t:{r['id']}")])
     controls = [InlineKeyboardButton(text="🔄 Обновить", callback_data="r")]
     done_count = sum(1 for r in rows if r["done"])
     if done_count: controls.append(InlineKeyboardButton(text=f"🧹 Убрать купленное ({done_count})", callback_data="c"))
@@ -303,7 +303,7 @@ async def on_startup(app):
     if not TOKEN: raise SystemExit("Не задан BOT_TOKEN")
     bot = Bot(TOKEN, default=DefaultBotProperties(parse_mode=ParseMode.HTML)); dp.bot = bot
     me = await bot.get_me(); BOT_USERNAME = me.username
-    await bot.set_my_commands([BotCommand(command="app", description="📱 Открыть приложение"), BotCommand(command="list", description="🛒 Список в чате"), BotCommand(command="invite", description="🔗 Пригласить второго"), BotCommand(command="help", description="ℹ️ Помощь")])
+    await bot.set_my_commands([BotCommand(command="app", description="📱 Открыть приложение"), BotCommand(command="list", description="🛒 Список в чате"), BotCommand(command="invite", description="🔗 Пригласить второго"), BotCommand(command="help", description="i️ Помощь")])
     await bot.delete_webhook(drop_pending_updates=False)
     logging.info("Бот @%s запущен", BOT_USERNAME); logging.info("API и Mini App запущены на порту %s", API_PORT)
     asyncio.create_task(dp.start_polling(bot))
@@ -359,7 +359,7 @@ input, select { width: 100%; border: none; outline: none; background: var(--card
 <div class="header">
     <div class="title">
         <div><h1>🛒 Наши покупки</h1><div class="counter" id="counter">Загрузка...</div></div>
-        <button class="clear" onclick="clearBought()">рџ§№</button>
+        <button class="clear" onclick="clearBought()">рџ§No</button>
     </div>
     <div class="addbox">
         <input id="newItem" placeholder="Молоко, хлеб, яйца..." onkeydown="if(event.key==='Enter') addItem()">
@@ -377,7 +377,7 @@ input, select { width: 100%; border: none; outline: none; background: var(--card
     </div>
     <div class="tabs">
         <button class="tab active" id="tab-active" onclick="setFilter('active')">Купить</button>
-        <button class="tab" id="tab-all" onclick="setFilter('all')">Р'СЃРµ</button>
+        <button class="tab" id="tab-all" onclick="setFilter('all')">Р'СЃРμ</button>
         <button class="tab" id="tab-done" onclick="setFilter('done')">Куплено</button>
     </div>
 </div>
